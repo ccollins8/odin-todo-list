@@ -65,12 +65,22 @@ main .nav h3 {
 }
 
 main .list {
+    width: 900px;
     padding: 1rem;
     margin: 0 auto;
 }
 
 main .list h2 {
     margin-bottom: 1rem;
+}
+
+main .list button {
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+main .list .task-item {
+    margin-bottom: 0.5rem;
 }
 
 footer {
