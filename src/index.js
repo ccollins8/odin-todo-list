@@ -13,7 +13,11 @@ const tasks = []
 
 addTask.addEventListener('click', () => {
     const task = new Task("Make Breakfast", "Make scrambled eggs and bacon", "2/25/24", "1")
-    tasks.push(task)
+    // tasks.push(task)
+    // console.log(tasks)
+
+    tasks.push(JSON.stringify(task))
+    console.log(task)
     console.log(tasks)
 
     // Add task to storage

@@ -13,7 +13,8 @@ export default class UI {
     static addTask(task) {
         const taskUI = document.createElement('div');
         taskUI.classList.add('task-item');
-        // list.appendChild(taskUI);
+        
+        task = JSON.parse(task)
     
         const title = document.createElement('p');
         title.classList.add('task-title');
