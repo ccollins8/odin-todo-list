@@ -1,6 +1,7 @@
 import './style.css';
 import Task from './task';
 import UI from './UI';
+import Storage from './storage';
 
 const nav = document.querySelector('.nav')
 
@@ -9,27 +10,39 @@ const addTask = document.querySelector('.list button')
 
 // Create task on click of button
 
-const tasks = []
-
 addTask.addEventListener('click', () => {
-    const task = new Task("Make Breakfast", "Make scrambled eggs and bacon", "2/25/24", "1")
-    // tasks.push(task)
-    // console.log(tasks)
 
-    tasks.push(JSON.stringify(task))
-    console.log(task)
-    console.log(tasks)
+    UI.displayForm()
+    UI.removeTaskButton();
+    
+    const form = document.querySelector('.list form')
+    const title = document.querySelector('.list #title')
+    const description = document.querySelector('.list #description')
+    const priority = document.querySelector('.list #priority')
+    const date = document.querySelector('.list #date')
 
-    // Add task to storage
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Create Object
+        const task = new Task(title.value, description.value, priority.value, date.value)
+        // Store object in localStorage
+        Storage.addTaskToStorage(task)
+        // clear form
+        UI.clearForm();
+        // render tasks in Storage
+        UI.renderTasks();
+        UI.addTaskButton();
+    })
 
+    const formCancelBtn = document.querySelector('.list form .cancel')
 
-
-    // rerender DOM
-
-    UI.renderTasks(tasks);
-
-    // const taskUI = UI.renderTasks(tasks)
-    // list.appendChild(taskUI);
+    formCancelBtn.addEventListener('click', () => {
+        UI.clearForm();
+        UI.renderTasks();
+        UI.addTaskButton();
+    })
+    
+    
 
 })
 

@@ -83,6 +83,11 @@ main .list .task-item {
     margin-bottom: 0.5rem;
 }
 
+main .list form section {
+    display: flex;
+    gap: 1rem;
+}
+
 footer {
     background-color: var(--emerald3);
     position: absolute;
