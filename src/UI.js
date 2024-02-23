@@ -31,11 +31,8 @@ export default class UI {
         return taskUI;
     }
 
-    static displayForm() {
-        const taskForm = document.createElement('form')
-        const tasks = document.querySelector('.list .tasks');
-        taskForm.innerHTML = `
-        <p>
+    static taskFormHTML = `
+    <p>
             <label>Title</label>
             <input type="text" id="title">
         </p>
@@ -53,15 +50,39 @@ export default class UI {
         </p>
         <section>
             <p>
-                <button type="submit">Confirm</button>
+                <button type="button" class="submit">Confirm</button>
             </p>
             <p>
                 <button type="button" class="cancel">Cancel</button>
             </p>
         </section>
-
         `
+
+    static displayTaskForm() {
+        const taskForm = document.createElement('form')
+        const tasks = document.querySelector('.list .tasks');
+        taskForm.innerHTML = this.taskFormHTML;
         tasks.appendChild(taskForm)
+    }
+
+    static displayEditTaskForm(task) {
+        // task = JSON.parse(task)
+
+        const taskForm = document.createElement('form')
+        const tasks = document.querySelector('.list .tasks');
+        taskForm.innerHTML = this.taskFormHTML;
+        tasks.appendChild(taskForm)
+
+        const title = document.querySelector('.list form #title')
+        title.value = task.title
+        const description = document.querySelector('.list form #description')
+        description.value = task.description
+        const priority = document.querySelector('.list form #priority')
+        priority.value = task.priority
+        const date = document.querySelector('.list form #date')
+        date.value = task.dueDate
+
+
     }
 
     static addTaskButton() {
