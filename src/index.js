@@ -95,13 +95,14 @@ list.addEventListener('click', function (e) {
     // Check if node clicked is task item
     if (e.target.parentNode.classList.contains('task-item')) {
         // key = text content of task-title
+
+        // change class to selected
+        e.target.parentNode.classList.add('selected')
+
+        console.log('hello')
+
         const key = e.target.parentNode.firstChild.textContent
-
-        console.log(localStorage.getItem(key))
-
         const task = Storage.getTask(key)
-
-        console.log(task)
 
         UI.displayEditTaskForm(task)
         UI.removeTaskButton()

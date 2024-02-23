@@ -67,11 +67,19 @@ export default class UI {
 
     static displayEditTaskForm(task) {
         // task = JSON.parse(task)
+        console.log("test")
 
         const taskForm = document.createElement('form')
         const tasks = document.querySelector('.list .tasks');
         taskForm.innerHTML = this.taskFormHTML;
-        tasks.appendChild(taskForm)
+        // tasks.appendChild(taskForm)
+
+        const selectedTaskItem = document.querySelector('.task-item.selected')
+        console.log(selectedTaskItem)
+
+        selectedTaskItem.style.display = 'none'
+
+        tasks.insertBefore(taskForm, selectedTaskItem)
 
         const title = document.querySelector('.list form #title')
         title.value = task.title
@@ -81,6 +89,8 @@ export default class UI {
         priority.value = task.priority
         const date = document.querySelector('.list form #date')
         date.value = task.dueDate
+
+        
 
 
     }
