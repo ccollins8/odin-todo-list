@@ -59,10 +59,11 @@ export default class UI {
         `
 
     static displayTaskForm() {
+        const list = document.querySelector('.list')
         const taskForm = document.createElement('form')
-        const tasks = document.querySelector('.list .tasks');
+        const addTask = document.querySelector('.add-task-button');
         taskForm.innerHTML = this.taskFormHTML;
-        tasks.appendChild(taskForm)
+        list.insertBefore(taskForm, addTask)
     }
 
     static displayEditTaskForm(task) {

@@ -89,6 +89,7 @@ const addTask = document.querySelector('.list button')
 // })
 
 const list = document.querySelector('.list');
+const tasks = document.querySelector('.tasks')
 
 list.addEventListener('click', function (e) {
 
@@ -98,8 +99,6 @@ list.addEventListener('click', function (e) {
 
         // change class to selected
         e.target.parentNode.classList.add('selected')
-
-        console.log('hello')
 
         const key = e.target.parentNode.firstChild.textContent
         const task = Storage.getTask(key)
@@ -111,11 +110,20 @@ list.addEventListener('click', function (e) {
     const title = document.querySelector('.list #title')
     const description = document.querySelector('.list #description')
     const priority = document.querySelector('.list #priority')
-    const date = document.querySelector('.list #date')
+    const dueDate = document.querySelector('.list #date')
 
     if (e.target.classList.contains('submit')) {
 
-        const task = new Task(title.value, description.value, priority.value, date.value)
+        if (tasks.contains(e.target)) {
+            
+            const key = e.target.closest('form').nextSibling.firstChild.textContent
+            
+            localStorage.removeItem(key)
+            
+
+        }
+            
+        const task = new Task(title.value, description.value, priority.value, dueDate.value)
         // Store object in localStorage
         Storage.addTaskToStorage(task)
         // clear form
