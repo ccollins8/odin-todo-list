@@ -74,13 +74,32 @@ main .list h2 {
     margin-bottom: 1rem;
 }
 
-main .list button {
+main .list .add-task-button, main .list form button {
     padding: 1rem;
     margin-bottom: 1rem;
 }
 
 main .list .task-item {
     margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+main .list .task-item .right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+main .list .task-item button {
+    background-color: none;
+}
+
+main .list .task-item:hover {
+    cursor: pointer;
+    background-color: var(--emerald2);
 }
 
 main .list form section {

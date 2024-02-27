@@ -91,16 +91,25 @@ const addTask = document.querySelector('.list button')
 const list = document.querySelector('.list');
 const tasks = document.querySelector('.tasks')
 
+const taskItems = document.querySelectorAll('task-item')
+
 list.addEventListener('click', function (e) {
 
+    // console.log(e.target.parentNode.classList.contains(".left"))
+
+
+    console.log(e.target.classList)
     // Check if node clicked is task item
-    if (e.target.parentNode.classList.contains('task-item')) {
+    if ((e.target.parentNode.classList.contains("left") ||
+        e.target.parentNode.classList.contains("right") ||
+        e.target.classList.contains('task-item')) &&
+        !e.target.classList.contains("delete")) {
         // key = text content of task-title
 
         // change class to selected
-        e.target.parentNode.classList.add('selected')
+        e.target.closest('.task-item').classList.add('selected')
+        const key = document.querySelector('.list .selected .task-title').textContent
 
-        const key = e.target.parentNode.firstChild.textContent
         const task = Storage.getTask(key)
 
         UI.displayEditTaskForm(task)
@@ -116,8 +125,10 @@ list.addEventListener('click', function (e) {
 
         if (tasks.contains(e.target)) {
             
-            const key = e.target.closest('form').nextSibling.firstChild.textContent
+            const key = e.target.closest('form').nextSibling.firstElementChild.firstElementChild.textContent
             
+            console.log(key)
+
             localStorage.removeItem(key)
             
 
@@ -145,6 +156,14 @@ list.addEventListener('click', function (e) {
 
     }
     
+    if (e.target.classList.contains('delete')) {
+        
+        e.target.closest('.task-item').classList.add('selected')
+        const key = document.querySelector('.list .selected .task-title').textContent
+        console.log(key)
+        localStorage.removeItem(key)
+        UI.renderTasks()
+    }
 })
 
 

@@ -18,16 +18,30 @@ export default class UI {
         
         task = JSON.parse(task)
     
-        const title = document.createElement('p');
-        title.classList.add('task-title');
-        title.textContent = task.title;
-        taskUI.appendChild(title);
+        // const title = document.createElement('p');
+        // title.classList.add('task-title');
+        // title.textContent = task.title;
+        // taskUI.appendChild(title);
     
-        const dueDate = document.createElement('p');
-        dueDate.classList.add('task-due-date');
-        dueDate.textContent = task.dueDate;
-        taskUI.appendChild(dueDate);
-    
+        // const dueDate = document.createElement('p');
+        // dueDate.classList.add('task-due-date');
+        // dueDate.textContent = `Due Date: ${task.dueDate}`;
+        // taskUI.appendChild(dueDate);
+        
+        taskUI.innerHTML = `
+        <div class="left">
+            <p class="task-title">${task.title}</p>
+            <p class="task-description">${task.description}</p>
+        </div>
+        <div class="right">
+            <p class="task-due-date">Due Date: ${task.dueDate}</p>
+            <p class="task-priority">Priority: ${task.priority}</p>
+            <button class="delete">X</button>
+        </div>
+        
+  `;
+
+
         return taskUI;
     }
 
@@ -68,7 +82,6 @@ export default class UI {
 
     static displayEditTaskForm(task) {
         // task = JSON.parse(task)
-        console.log("test")
 
         const taskForm = document.createElement('form')
         const tasks = document.querySelector('.list .tasks');
