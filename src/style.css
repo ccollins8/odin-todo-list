@@ -48,12 +48,14 @@ main {
     display: flex;
 }
 
+/* MAIN NAV SECTION */
+
 main .nav {
     padding: 1rem;
     background-color: var(--emerald2);
 }
 
-main .nav button {
+main .nav .home button {
     padding: 1rem;
     height: 3rem;
     width: 15rem;
@@ -63,6 +65,18 @@ main .nav button {
 main .nav h3 {
     margin: 1rem 0;
 }
+
+main .nav button {
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+main .nav form section {
+    display: flex;
+    gap: 1rem;
+}
+
+/* MAIN LIST SECTION */
 
 main .list {
     width: 900px;

@@ -6,8 +6,6 @@ import loadPage from './iniitial-page-load';
 
 loadPage();
 
-const nav = document.querySelector('.nav')
-
 const addTask = document.querySelector('.list button')
 
 // Create task on click of button
@@ -30,7 +28,7 @@ const addTask = document.querySelector('.list button')
 //         // Store object in localStorage
 //         Storage.addTaskToStorage(task)
 //         // clear form
-//         UI.clearForm();
+//         UI.clearTaskForm();
 //         // render tasks in Storage
 //         UI.renderTasks();
 //         UI.addTaskButton();
@@ -39,7 +37,7 @@ const addTask = document.querySelector('.list button')
 //     const formCancelBtn = document.querySelector('.list form .cancel')
 
 //     formCancelBtn.addEventListener('click', () => {
-//         UI.clearForm();
+//         UI.clearTaskForm();
 //         UI.renderTasks();
 //         UI.addTaskButton();
 //     })
@@ -71,7 +69,7 @@ const addTask = document.querySelector('.list button')
             
 //             const task = new Task(title.value, description.value, priority.value, date.value)
 //             Storage.addTaskToStorage(task)
-//             UI.clearForm();
+//             UI.clearTaskForm();
 //             UI.renderTasks();
 //             UI.addTaskButton();
 //         })
@@ -79,7 +77,7 @@ const addTask = document.querySelector('.list button')
 //         const formCancelBtn = document.querySelector('.list form .cancel')
 
 //         formCancelBtn.addEventListener('click', () => {
-//             UI.clearForm();
+//             UI.clearTaskForm();
 //             UI.renderTasks();
 //             UI.addTaskButton();
 //         })
@@ -138,14 +136,14 @@ list.addEventListener('click', function (e) {
         // Store object in localStorage
         Storage.addTaskToStorage(task)
         // clear form
-        UI.clearForm();
+        UI.clearTaskForm();
         // render tasks in Storage
         UI.renderTasks();
         UI.addTaskButton();
     }
 
     if (e.target.classList.contains('cancel')) {
-        UI.clearForm();
+        UI.clearTaskForm();
         UI.renderTasks();
         UI.addTaskButton();
     }
@@ -164,6 +162,20 @@ list.addEventListener('click', function (e) {
         localStorage.removeItem(key)
         UI.renderTasks()
     }
+})
+
+// NAVIGATION BAR SECTION
+
+const nav = document.querySelector('main .nav');
+
+nav.addEventListener('click', (e) => {
+    
+    if (e.target.classList.contains('add-project-button')) {
+        UI.displayProjectForm();
+        UI.removeAddProjectButton();
+    }
+    
+
 })
 
 

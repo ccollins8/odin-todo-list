@@ -119,8 +119,33 @@ export default class UI {
         
     }
 
-    static clearForm() {
+    static clearTaskForm() {
         const form = document.querySelector('.list form')
         form.remove();
+    }
+
+    static displayProjectForm() {
+        const projectSection = document.querySelector('.project-section')
+        const addProjectBtn = document.querySelector('.add-project-button')
+        const form = document.createElement('form')
+        form.innerHTML = `
+        <p>
+            <label>Title</label>
+            <input type="text" id="title">
+        </p>
+        <section>
+            <p>
+                <button type="button" class="submit">Submit</button>
+            </p>
+            <p>
+                <button type="button" class="cancel">cancel</button>
+            </p>
+        </section>
+        `
+        projectSection.insertBefore(form,addProjectBtn)
+    }
+
+    static removeAddProjectButton() {
+        document.querySelector('.nav .add-project-button').style.display = 'none';
     }
 }
