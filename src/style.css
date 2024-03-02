@@ -66,10 +66,29 @@ main .nav h3 {
     margin: 1rem 0;
 }
 
-main .nav button {
+main .nav .home button {
     padding: 1rem;
     margin: 1rem 0;
 }
+
+main .nav .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+main .nav .projects .project {
+    padding: 0.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+main .nav .project .vert  {
+    margin-left: auto;
+    
+} 
 
 main .nav form section {
     display: flex;

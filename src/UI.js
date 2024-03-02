@@ -1,48 +1,74 @@
+import Storage from './storage'
+
 export default class UI {
 
     static tasksNode = document.querySelector('main .tasks');
+
     // static addTaskButton = document.querySelector('main .list button' )
     
-    static renderTasks(tasks) {
-        UI.tasksNode.innerHTML = "";
-
-        Object.keys(localStorage).forEach((key) => {
-            UI.tasksNode.appendChild(UI.addTask((localStorage.getItem(key))));
-         });
+    static renderProjects() {
         
+        
+        const projects = document.querySelector('.nav .projects')
+        projects.innerHTML = '';
+        const projectList = Storage.getProjectList()
+        projectList.forEach((project) => {
+            const projectNode = document.createElement('button');
+            projectNode.classList.add('project')
+            
+            projectNode.innerHTML = `
+            <span class="material-icons">menu</span>
+            <div>${project.title}</div>
+            <span class="material-icons vert">more_vert</span>
+            `
+            projects.appendChild(projectNode)
+            
+        })
+    }
+    
+    static renderTasks(tasks) {
+        // UI.tasksNode.innerHTML = "";
+
+        // Object.keys(localStorage).forEach((key) => {
+        //     UI.tasksNode.appendChild(UI.addTask((localStorage.getItem(key))));
+        //  });
+
     }
 
     static addTask(task) {
-        const taskUI = document.createElement('div');
-        taskUI.classList.add('task-item');
+//       const taskUI = document.createElement('div');
+
+//         taskUI.classList.add('task-item');
         
-        task = JSON.parse(task)
+//         task = JSON.parse(task)
     
-        // const title = document.createElement('p');
-        // title.classList.add('task-title');
-        // title.textContent = task.title;
-        // taskUI.appendChild(title);
+//         // const title = document.createElement('p');
+//         // title.classList.add('task-title');
+//         // title.textContent = task.title;
+//         // taskUI.appendChild(title);
     
-        // const dueDate = document.createElement('p');
-        // dueDate.classList.add('task-due-date');
-        // dueDate.textContent = `Due Date: ${task.dueDate}`;
-        // taskUI.appendChild(dueDate);
+//         // const dueDate = document.createElement('p');
+//         // dueDate.classList.add('task-due-date');
+//         // dueDate.textContent = `Due Date: ${task.dueDate}`;
+//         // taskUI.appendChild(dueDate);
         
-        taskUI.innerHTML = `
-        <div class="left">
-            <p class="task-title">${task.title}</p>
-            <p class="task-description">${task.description}</p>
-        </div>
-        <div class="right">
-            <p class="task-due-date">Due Date: ${task.dueDate}</p>
-            <p class="task-priority">Priority: ${task.priority}</p>
-            <button class="delete">X</button>
-        </div>
+//         taskUI.innerHTML = `
+//         <div class="left">
+//             <p class="task-title">${task.title}</p>
+//             <p class="task-description">${task.description}</p>
+//         </div>
+//         <div class="right">
+//             <p class="task-due-date">Due Date: ${task.dueDate}</p>
+//             <p class="task-priority">Priority: ${task.priority}</p>
+//             <button class="delete">X</button>
+//         </div>
         
-  `;
+//   `;
 
 
-        return taskUI;
+//         return taskUI;
+
+        
     }
 
     static taskFormHTML = `
@@ -147,5 +173,14 @@ export default class UI {
 
     static removeAddProjectButton() {
         document.querySelector('.nav .add-project-button').style.display = 'none';
+    }
+
+    static clearProjectForm() {
+        const form = document.querySelector('.nav form')
+        form.remove();
+    }
+
+    static addProjectBtn() {
+        document.querySelector('.nav .add-project-button').style.display = "block";
     }
 }

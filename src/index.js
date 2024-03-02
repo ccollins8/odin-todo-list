@@ -1,5 +1,6 @@
 import './style.css';
 import Task from './task';
+import Project from './project'
 import UI from './UI';
 import Storage from './storage';
 import loadPage from './iniitial-page-load';
@@ -168,11 +169,27 @@ list.addEventListener('click', function (e) {
 
 const nav = document.querySelector('main .nav');
 
+
 nav.addEventListener('click', (e) => {
     
     if (e.target.classList.contains('add-project-button')) {
         UI.displayProjectForm();
         UI.removeAddProjectButton();
+    }
+
+    const title = document.querySelector('.nav #title')
+
+    if (e.target.classList.contains('submit')) {
+        const project = new Project(title.value)
+        Storage.addProject(project)
+        UI.clearProjectForm()
+        UI.addProjectBtn()
+        UI.renderProjects()
+    }
+
+    if (e.target.classList.contains('cancel')) {
+        UI.clearProjectForm()
+        UI.addProjectBtn()
     }
     
 
