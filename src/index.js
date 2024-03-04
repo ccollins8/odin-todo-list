@@ -122,25 +122,27 @@ list.addEventListener('click', function (e) {
 
     if (e.target.classList.contains('submit')) {
 
-        if (tasks.contains(e.target)) {
+        // if (tasks.contains(e.target)) {
             
-            const key = e.target.closest('form').nextSibling.firstElementChild.firstElementChild.textContent
+        //     const key = e.target.closest('form').nextSibling.firstElementChild.firstElementChild.textContent
             
-            console.log(key)
+        //     console.log(key)
 
-            localStorage.removeItem(key)
+        //     localStorage.removeItem(key)
             
 
-        }
+        // }
             
+        // const task = new Task(title.value, description.value, priority.value, dueDate.value)
+        // // Store object in localStorage
+        // Storage.addTaskToStorage(task)
+        // // clear form
+        // UI.clearTaskForm();
+        // // render tasks in Storage
+        // UI.renderTasks();
+        // UI.addTaskButton();
+
         const task = new Task(title.value, description.value, priority.value, dueDate.value)
-        // Store object in localStorage
-        Storage.addTaskToStorage(task)
-        // clear form
-        UI.clearTaskForm();
-        // render tasks in Storage
-        UI.renderTasks();
-        UI.addTaskButton();
     }
 
     if (e.target.classList.contains('cancel')) {
@@ -191,7 +193,15 @@ nav.addEventListener('click', (e) => {
         UI.clearProjectForm()
         UI.addProjectBtn()
     }
-    
+
+    if (e.target.closest('.project')) {
+        e.target.closest('.project').classList.add('selected')
+        // const projectTitle = e.target.closest('.project');
+        //
+        const title = e.target.closest('.project').firstElementChild.nextElementSibling.textContent;
+        console.log(Storage.getProjectList().find(project => project.title == title))
+      }
+        
 
 })
 
