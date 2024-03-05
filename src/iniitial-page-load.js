@@ -5,8 +5,9 @@ export default function loadPage() {
     // UI.renderTasks()
     if (localStorage.getItem('projectList') === null) {
         console.log('projectList is null')
-        Storage.projectList = []
-        Storage.saveProjectList()
+        // Storage.projectList = []
+        // Storage.saveProjectList()
+        Storage.saveProjectList([])
     }
     UI.renderProjects()
 }

@@ -143,6 +143,10 @@ list.addEventListener('click', function (e) {
         // UI.addTaskButton();
 
         const task = new Task(title.value, description.value, priority.value, dueDate.value)
+        const selectedProjectTitle = document.querySelector('.project.selected div').textContent
+        console.log(selectedProjectTitle)
+        const project = Storage.getProjectList().find(project => project.title == selectedProjectTitle)
+        Storage.addTask(project,task);
     }
 
     if (e.target.classList.contains('cancel')) {
@@ -195,12 +199,14 @@ nav.addEventListener('click', (e) => {
     }
 
     if (e.target.closest('.project')) {
-        e.target.closest('.project').classList.add('selected')
-        // const projectTitle = e.target.closest('.project');
-        //
+        const clickedProject = e.target.closest('.project');
+        // remove "selected from last project
+        document.querySelectorAll('.project').forEach(project => project.classList.remove('selected'))
+        clickedProject.classList.add('selected');
+        console.log(e.target.closest('.project'));
         const title = e.target.closest('.project').firstElementChild.nextElementSibling.textContent;
-        console.log(Storage.getProjectList().find(project => project.title == title))
-      }
+        // console.log(Storage.getProjectList().find(project => project.title == title))
+      } const project = Storage.getProjectList().find(project => project.title == title)
         
 
 })
