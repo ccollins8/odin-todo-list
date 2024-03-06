@@ -77,6 +77,10 @@ main .nav .projects {
     gap: 0.25rem;
 }
 
+main .nav .project.selected {
+    background-color: lightblue;
+}
+
 main .nav .projects .project {
     padding: 0.5rem;
     width: 100%;

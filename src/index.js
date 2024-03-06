@@ -97,22 +97,35 @@ list.addEventListener('click', function (e) {
     // console.log(e.target.parentNode.classList.contains(".left"))
 
 
-    console.log(e.target.classList)
+    
     // Check if node clicked is task item
     if ((e.target.parentNode.classList.contains("left") ||
         e.target.parentNode.classList.contains("right") ||
         e.target.classList.contains('task-item')) &&
         !e.target.classList.contains("delete")) {
-        // key = text content of task-title
+        
+        const clickedTask = e.target.closest('.task-item');
+        console.log(clickedTask)
+        document.querySelectorAll('.task-item').forEach(task => task.classList.remove('selected'))
 
-        // change class to selected
-        e.target.closest('.task-item').classList.add('selected')
-        const key = document.querySelector('.list .selected .task-title').textContent
-
-        const task = Storage.getTask(key)
+        console.log('test')
+        clickedTask.classList.add('selected')
+        
+        const selectedProjectTitle = document.querySelector('.project.selected div').textContent
+        const project = Storage.getProject(selectedProjectTitle)
+        const selectedTaskTitle = document.querySelector('.task-item.selected .task-title').textContent
+        console.log(Storage.getTask(project,selectedTaskTitle))
+        
+        const task = Storage.getTask(project,selectedTaskTitle)
 
         UI.displayEditTaskForm(task)
         UI.removeTaskButton()
+        
+
+        // const task = Storage.getTask(key)
+
+        // UI.displayEditTaskForm(task)
+        // UI.removeTaskButton()
     }
 
     const title = document.querySelector('.list #title')
@@ -143,10 +156,12 @@ list.addEventListener('click', function (e) {
         // UI.addTaskButton();
 
         const task = new Task(title.value, description.value, priority.value, dueDate.value)
+
         const selectedProjectTitle = document.querySelector('.project.selected div').textContent
-        console.log(selectedProjectTitle)
+        
         const project = Storage.getProjectList().find(project => project.title == selectedProjectTitle)
         Storage.addTask(project,task);
+        UI.renderTasks();
     }
 
     if (e.target.classList.contains('cancel')) {
@@ -164,10 +179,16 @@ list.addEventListener('click', function (e) {
     if (e.target.classList.contains('delete')) {
         
         e.target.closest('.task-item').classList.add('selected')
-        const key = document.querySelector('.list .selected .task-title').textContent
-        console.log(key)
-        localStorage.removeItem(key)
-        UI.renderTasks()
+        // const key = document.querySelector('.list .selected .task-title').textContent
+        // console.log(key)
+        // localStorage.removeItem(key)
+        // UI.renderTasks()
+        const projectTitle = document.querySelector('.project.selected div').textContent
+        const taskTitle = document.querySelector('.task-item.selected .task-title').textContent;
+        
+        // const project = Storage.getProjectList().find(item => item.title == selectedProjectTitle)
+        
+        Storage.deleteTask(projectTitle,taskTitle)
     }
 })
 
@@ -200,12 +221,16 @@ nav.addEventListener('click', (e) => {
 
     if (e.target.closest('.project')) {
         const clickedProject = e.target.closest('.project');
+        
         // remove "selected from last project
         document.querySelectorAll('.project').forEach(project => project.classList.remove('selected'))
         clickedProject.classList.add('selected');
         console.log(e.target.closest('.project'));
-        const title = e.target.closest('.project').firstElementChild.nextElementSibling.textContent;
+        // const title = e.target.closest('.project').firstElementChild.nextElementSibling.textContent;
+        const title = clickedProject.querySelector('.project-title').textContent
+        console.log(title)
         // console.log(Storage.getProjectList().find(project => project.title == title))
+
       } const project = Storage.getProjectList().find(project => project.title == title)
         
 

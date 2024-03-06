@@ -1,7 +1,12 @@
 export default class ProjectList {
 
-    static getProject(projectName) {
-        return Storage.getProjectList().find(project => project.title == title)
+    constructor() {
+        this.projects = []
     }
 
+    setProjects(projects) {
+        this.projects = projects
+    }
+    
+    
 }

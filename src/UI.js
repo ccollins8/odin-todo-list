@@ -18,7 +18,7 @@ export default class UI {
             
             projectNode.innerHTML = `
             <span class="material-icons">menu</span>
-            <div>${project.title}</div>
+            <div class="project-title">${project.title}</div>
             <span class="material-icons vert">more_vert</span>
             `
             projects.appendChild(projectNode)
@@ -33,40 +33,53 @@ export default class UI {
         //     UI.tasksNode.appendChild(UI.addTask((localStorage.getItem(key))));
         //  });
 
+        UI.tasksNode.innerHTML = ''
+        const projectTitle = document.querySelector('.project.selected .project-title').textContent
+        console.log(projectTitle)
+
+        const projectList = Storage.getProjectList()
+        const projectIndex = projectList.findIndex(project => project.title = projectTitle)
+        console.log(projectList[projectIndex].tasks)
+        const projectTasks = projectList[projectIndex].tasks;
+
+        projectTasks.forEach(task => {
+            const tasksNode = document.querySelector('.list .tasks')
+            tasksNode.appendChild(UI.addTask(task))
+        })
     }
 
     static addTask(task) {
-//       const taskUI = document.createElement('div');
+      const taskUI = document.createElement('div');
 
-//         taskUI.classList.add('task-item');
+        taskUI.classList.add('task-item');
         
-//         task = JSON.parse(task)
+        
     
-//         // const title = document.createElement('p');
-//         // title.classList.add('task-title');
-//         // title.textContent = task.title;
-//         // taskUI.appendChild(title);
+        // const title = document.createElement('p');
+        // title.classList.add('task-title');
+        // title.textContent = task.title;
+        // taskUI.appendChild(title);
     
-//         // const dueDate = document.createElement('p');
-//         // dueDate.classList.add('task-due-date');
-//         // dueDate.textContent = `Due Date: ${task.dueDate}`;
-//         // taskUI.appendChild(dueDate);
+        // const dueDate = document.createElement('p');
+        // dueDate.classList.add('task-due-date');
+        // dueDate.textContent = `Due Date: ${task.dueDate}`;
+        // taskUI.appendChild(dueDate);
         
-//         taskUI.innerHTML = `
-//         <div class="left">
-//             <p class="task-title">${task.title}</p>
-//             <p class="task-description">${task.description}</p>
-//         </div>
-//         <div class="right">
-//             <p class="task-due-date">Due Date: ${task.dueDate}</p>
-//             <p class="task-priority">Priority: ${task.priority}</p>
-//             <button class="delete">X</button>
-//         </div>
+        taskUI.innerHTML = `
+        <div class="left">
+            <p class="task-title">${task.title}</p>
+            <p class="task-description">${task.description}</p>
+        </div>
+        <div class="right">
+            <p class="task-due-date">Due Date: ${task.dueDate}</p>
+            <p class="task-priority">Priority: ${task.priority}</p>
+            <button class="delete">X</button>
+        </div>
         
-//   `;
+  `;
 
 
-//         return taskUI;
+        return taskUI;
 
         
     }
@@ -107,12 +120,12 @@ export default class UI {
     }
 
     static displayEditTaskForm(task) {
-        // task = JSON.parse(task)
+        
 
         const taskForm = document.createElement('form')
         const tasks = document.querySelector('.list .tasks');
         taskForm.innerHTML = this.taskFormHTML;
-        // tasks.appendChild(taskForm)
+        
 
         const selectedTaskItem = document.querySelector('.task-item.selected')
         console.log(selectedTaskItem)

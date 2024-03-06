@@ -10,8 +10,13 @@ export default class Storage {
         localStorage.setItem('projectList', JSON.stringify(data))
     }
 
-    static getTask(key) {
-        return JSON.parse(localStorage.getItem(key))
+    static getProject(projectTitle) {
+        const projectList = this.getProjectList()
+        return projectList.find(project => project.title == projectTitle)
+    }
+
+    static getTask(project, taskTitle) {
+        return project.tasks.find(task => task.title == taskTitle)
     }
 
     static addProject(project) {
@@ -21,6 +26,10 @@ export default class Storage {
         const projectList = Storage.getProjectList();
         projectList.push(project);
         Storage.saveProjectList(projectList);
+    }
+
+    static deleteProject(project) {
+
     }
 
     static addTask(project, task) {
@@ -36,5 +45,13 @@ export default class Storage {
         // before I was just grabbing a reference
         Storage.saveProjectList(projectList);
         
+    }
+
+    static deleteTask(projectTitle, taskTitle) {
+        const projectList = Storage.getProjectList()
+        const projectIndex = projectList.findIndex(item => item.title == projectTitle)
+        const newProjectList = projectList[projectIndex].tasks.filter(item => item.title !== taskTitle)
+        console.log(newProjectList)
+        // Storage.saveProjectList(newProjectList)
     }
 }
