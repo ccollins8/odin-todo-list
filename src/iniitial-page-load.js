@@ -21,5 +21,5 @@ export default function loadPage() {
     UI.renderProjects()
     // set first Project to selected on loadup
     document.querySelector('.projects').firstElementChild.classList.add('selected')
-    
+    UI.renderTasks()
 }

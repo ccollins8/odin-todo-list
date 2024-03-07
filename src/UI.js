@@ -35,11 +35,9 @@ export default class UI {
 
         UI.tasksNode.innerHTML = ''
         const projectTitle = document.querySelector('.project.selected .project-title').textContent
-        console.log(projectTitle)
 
         const projectList = Storage.getProjectList()
         const projectIndex = projectList.findIndex(project => project.title = projectTitle)
-        console.log(projectList[projectIndex].tasks)
         const projectTasks = projectList[projectIndex].tasks;
 
         projectTasks.forEach(task => {
@@ -128,7 +126,6 @@ export default class UI {
         
 
         const selectedTaskItem = document.querySelector('.task-item.selected')
-        console.log(selectedTaskItem)
 
         selectedTaskItem.style.display = 'none'
 

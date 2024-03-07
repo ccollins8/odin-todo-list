@@ -105,18 +105,18 @@ list.addEventListener('click', function (e) {
         !e.target.classList.contains("delete")) {
         
         const clickedTask = e.target.closest('.task-item');
-        console.log(clickedTask)
+        
         document.querySelectorAll('.task-item').forEach(task => task.classList.remove('selected'))
 
-        console.log('test')
+        
         clickedTask.classList.add('selected')
         
         const selectedProjectTitle = document.querySelector('.project.selected div').textContent
         const project = Storage.getProject(selectedProjectTitle)
         const selectedTaskTitle = document.querySelector('.task-item.selected .task-title').textContent
-        console.log(Storage.getTask(project,selectedTaskTitle))
         
-        const task = Storage.getTask(project,selectedTaskTitle)
+        // const task = Storage.getTask(project,selectedTaskTitle)
+        const task = project.tasks.find(item => item.title = selectedTaskTitle)
 
         UI.displayEditTaskForm(task)
         UI.removeTaskButton()
@@ -155,13 +155,22 @@ list.addEventListener('click', function (e) {
         // UI.renderTasks();
         // UI.addTaskButton();
 
-        const task = new Task(title.value, description.value, priority.value, dueDate.value)
+        if (tasks.contains(e.target)) {
+            Storage.editTask()
+        } else {
+            const task = new Task(title.value, description.value, priority.value, dueDate.value)
 
-        const selectedProjectTitle = document.querySelector('.project.selected div').textContent
+            const selectedProjectTitle = document.querySelector('.project.selected div').textContent
+            
+            const project = Storage.getProjectList().find(project => project.title == selectedProjectTitle)
+            Storage.addTask(project,task);
+        }
+
         
-        const project = Storage.getProjectList().find(project => project.title == selectedProjectTitle)
-        Storage.addTask(project,task);
+        UI.clearTaskForm();
         UI.renderTasks();
+        
+        UI.addTaskButton();
     }
 
     if (e.target.classList.contains('cancel')) {
@@ -189,6 +198,7 @@ list.addEventListener('click', function (e) {
         // const project = Storage.getProjectList().find(item => item.title == selectedProjectTitle)
         
         Storage.deleteTask(projectTitle,taskTitle)
+        UI.renderTasks()
     }
 })
 
@@ -225,10 +235,10 @@ nav.addEventListener('click', (e) => {
         // remove "selected from last project
         document.querySelectorAll('.project').forEach(project => project.classList.remove('selected'))
         clickedProject.classList.add('selected');
-        console.log(e.target.closest('.project'));
+        
         // const title = e.target.closest('.project').firstElementChild.nextElementSibling.textContent;
         const title = clickedProject.querySelector('.project-title').textContent
-        console.log(title)
+        
         // console.log(Storage.getProjectList().find(project => project.title == title))
 
       } const project = Storage.getProjectList().find(project => project.title == title)

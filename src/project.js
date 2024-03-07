@@ -13,4 +13,10 @@ export default class Project {
         this.title = title;
     }
 
+    getTask(taskTitle) {
+        return this.tasks.find(task => task.title == taskTitle)
+    }
+
+    
+
 }
