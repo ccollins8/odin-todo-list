@@ -241,6 +241,8 @@ nav.addEventListener('click', (e) => {
         
         // console.log(Storage.getProjectList().find(project => project.title == title))
 
+        UI.renderTasks()
+
       } const project = Storage.getProjectList().find(project => project.title == title)
         
 

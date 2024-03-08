@@ -26,7 +26,7 @@ export default class UI {
         })
     }
     
-    static renderTasks(tasks) {
+    static renderTasks() {
         // UI.tasksNode.innerHTML = "";
 
         // Object.keys(localStorage).forEach((key) => {
@@ -34,11 +34,16 @@ export default class UI {
         //  });
 
         UI.tasksNode.innerHTML = ''
-        const projectTitle = document.querySelector('.project.selected .project-title').textContent
-
-        const projectList = Storage.getProjectList()
-        const projectIndex = projectList.findIndex(project => project.title = projectTitle)
-        const projectTasks = projectList[projectIndex].tasks;
+        const selectedProjectTitle = document.querySelector('.project.selected div').textContent
+            
+        const project = Storage.getProjectList().find(project => project.title == selectedProjectTitle)
+        
+        const projectTasks = project.tasks
+        
+        // const projectIndex = projectList.findIndex(project => project.title = projectTitle)
+        
+        // const projectTasks = projectList[projectIndex].tasks;
+        
 
         projectTasks.forEach(task => {
             const tasksNode = document.querySelector('.list .tasks')

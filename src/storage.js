@@ -30,6 +30,12 @@ export default class Storage {
         Storage.saveProjectList(projectList);
     }
 
+    static editProject() {
+        const projectList = Storage.getProjectList()
+        const selectedProject = document.querySelector('.project.selected div').textContent
+        const project = Object.assign(new Project(), projectList.find(project => project.title == selectedProject))
+    }
+
     static deleteProject(project) {
 
     }
@@ -63,6 +69,9 @@ export default class Storage {
         const dueDate = document.querySelector('.list #date')
 
         task.title = title.value
+        task.description = description.value
+        task.priority = priority.value
+        task.dueDate = dueDate.value
         Storage.saveProjectList(projectList)
     }
 
