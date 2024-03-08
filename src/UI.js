@@ -34,7 +34,7 @@ export default class UI {
         //  });
 
         UI.tasksNode.innerHTML = ''
-        const selectedProjectTitle = document.querySelector('.project.selected div').textContent
+        const selectedProjectTitle = document.querySelector('.project.selected .project-title').textContent
             
         const project = Storage.getProjectList().find(project => project.title == selectedProjectTitle)
         
@@ -49,6 +49,11 @@ export default class UI {
             const tasksNode = document.querySelector('.list .tasks')
             tasksNode.appendChild(UI.addTask(task))
         })
+    }
+
+    static render() {
+        UI.renderProjects()
+        UI.renderTasks()
     }
 
     static addTask(task) {
@@ -197,5 +202,18 @@ export default class UI {
 
     static addProjectBtn() {
         document.querySelector('.nav .add-project-button').style.display = "block";
+    }
+
+    static displayProjectPopup() {
+        const popup = document.createElement('div');
+        popup.classList.add('popup')
+
+        popup.innerHTML = `
+            <div class="rename">Rename</div>
+            <div class="delete">Delete</div>
+        `
+        const selectedProject = document.querySelector('.project.selected')
+        selectedProject.appendChild(popup)
+
     }
 }

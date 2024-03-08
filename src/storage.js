@@ -30,14 +30,27 @@ export default class Storage {
         Storage.saveProjectList(projectList);
     }
 
-    static editProject() {
+    static renameProject() {
         const projectList = Storage.getProjectList()
-        const selectedProject = document.querySelector('.project.selected div').textContent
-        const project = Object.assign(new Project(), projectList.find(project => project.title == selectedProject))
+        const selectedProject = document.querySelector('.project.selected .project-title').textContent
+        const project = projectList.find(project => project.title == selectedProject)
+        // assigning project as Project object actually takes away pass by reference
+        project.title = 'test'
+
+        Storage.saveProjectList(projectList)
+
+
     }
 
-    static deleteProject(project) {
+    static deleteProject() {
+        let projectList = Storage.getProjectList()
+        const selectedProjectTitle = document.querySelector('.project.selected .project-title').textContent
+        console.log(selectedProjectTitle)
 
+        // const project = Storage.getProjectList().find(item => item.title == selectedProjectTitle);
+        projectList = projectList.filter(item => item.title !== selectedProjectTitle)
+        console.log(projectList)
+        Storage.saveProjectList(projectList)
     }
 
     static addTask(project, task) {
@@ -57,9 +70,10 @@ export default class Storage {
     static editTask() {
         // DO THIS PART NEXT
         const projectList = Storage.getProjectList()
-        const selectedProject = document.querySelector('.project.selected div').textContent
+        const selectedProject = document.querySelector('.project.selected .project-title').textContent
         const project = Object.assign(new Project(), projectList.find(project => project.title == selectedProject))
         const selectedTaskTitle = document.querySelector('.selected .task-title').textContent
+        
         console.log(project.getTask(selectedTaskTitle))
         const task = project.getTask(selectedTaskTitle);
 
@@ -72,6 +86,7 @@ export default class Storage {
         task.description = description.value
         task.priority = priority.value
         task.dueDate = dueDate.value
+
         Storage.saveProjectList(projectList)
     }
 

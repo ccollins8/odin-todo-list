@@ -111,7 +111,7 @@ list.addEventListener('click', function (e) {
         
         clickedTask.classList.add('selected')
         
-        const selectedProjectTitle = document.querySelector('.project.selected div').textContent
+        const selectedProjectTitle = document.querySelector('.project.selected .project-title').textContent
         const project = Storage.getProject(selectedProjectTitle)
         const selectedTaskTitle = document.querySelector('.task-item.selected .task-title').textContent
         
@@ -160,7 +160,7 @@ list.addEventListener('click', function (e) {
         } else {
             const task = new Task(title.value, description.value, priority.value, dueDate.value)
 
-            const selectedProjectTitle = document.querySelector('.project.selected div').textContent
+            const selectedProjectTitle = document.querySelector('.project.selected .project-title').textContent
             
             const project = Storage.getProjectList().find(project => project.title == selectedProjectTitle)
             Storage.addTask(project,task);
@@ -192,7 +192,7 @@ list.addEventListener('click', function (e) {
         // console.log(key)
         // localStorage.removeItem(key)
         // UI.renderTasks()
-        const projectTitle = document.querySelector('.project.selected div').textContent
+        const projectTitle = document.querySelector('.project.selected .project-title').textContent
         const taskTitle = document.querySelector('.task-item.selected .task-title').textContent;
         
         // const project = Storage.getProjectList().find(item => item.title == selectedProjectTitle)
@@ -243,7 +243,23 @@ nav.addEventListener('click', (e) => {
 
         UI.renderTasks()
 
-      } const project = Storage.getProjectList().find(project => project.title == title)
+      }
+    
+    if (e.target.classList.contains('vert')) {
+        UI.displayProjectPopup()
+    }
+
+    if (e.target.classList.contains('delete')) {
+        Storage.deleteProject()
+        UI.renderProjects()
+        // Probably add something to prevent deleting all projects
+    }
+
+    if (e.target.classList.contains('rename')) {
+        Storage.renameProject()
+    }
+
+
         
 
 })

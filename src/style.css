@@ -87,16 +87,39 @@ main .nav .projects .project {
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative;
 }
 
 main .nav .project .vert  {
     margin-left: auto;
+    
     
 } 
 
 main .nav form section {
     display: flex;
     gap: 1rem;
+}
+
+.project .popup {
+    position: absolute;
+    background-color: var(--emerald1);
+    box-shadow: black;
+    padding: 0.2rem;
+    cursor: pointer;
+    right: 10px;
+    bottom: 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.4)
+    
+    
+}
+
+.project .popup > * {
+    padding: 0.5rem 0.2rem;
+}
+
+.project .popup > *:hover {
+    background-color: rgba(188, 236, 182, 0.555);
 }
 
 /* MAIN LIST SECTION */
