@@ -32,10 +32,12 @@ export default class Storage {
 
     static renameProject() {
         const projectList = Storage.getProjectList()
-        const selectedProject = document.querySelector('.project.selected .project-title').textContent
-        const project = projectList.find(project => project.title == selectedProject)
+        const selectedProjectTitle = document.querySelector('.project.selected .project-title').textContent
+        const project = projectList.find(project => project.title == selectedProjectTitle)
         // assigning project as Project object actually takes away pass by reference
-        project.title = 'test'
+        
+        const title = document.querySelector('.nav form #title')
+        project.title = title.value
 
         Storage.saveProjectList(projectList)
 

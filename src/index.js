@@ -89,6 +89,7 @@ const addTask = document.querySelector('.list button')
 
 const list = document.querySelector('.list');
 const tasks = document.querySelector('.tasks')
+const projects = document.querySelector('.projects')
 
 const taskItems = document.querySelectorAll('task-item')
 
@@ -217,8 +218,14 @@ nav.addEventListener('click', (e) => {
     const title = document.querySelector('.nav #title')
 
     if (e.target.classList.contains('submit')) {
-        const project = new Project(title.value)
-        Storage.addProject(project)
+
+        if (projects.contains(e.target)) {
+            Storage.renameProject()
+        } else {
+            const project = new Project(title.value)
+            Storage.addProject(project)
+        }
+        
         UI.clearProjectForm()
         UI.addProjectBtn()
         UI.renderProjects()
@@ -252,11 +259,13 @@ nav.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
         Storage.deleteProject()
         UI.renderProjects()
+        UI.removeProjectPopup()
         // Probably add something to prevent deleting all projects
     }
 
     if (e.target.classList.contains('rename')) {
-        Storage.renameProject()
+        UI.displayEditProjectForm()
+        UI.removeProjectPopup()
     }
 
 

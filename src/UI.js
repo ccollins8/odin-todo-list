@@ -191,6 +191,35 @@ export default class UI {
         projectSection.insertBefore(form,addProjectBtn)
     }
 
+    static displayEditProjectForm() {
+        const projectSection = document.querySelector('.projects')
+        const selectedProject = document.querySelector('.project.selected')
+        const form = document.createElement('form')
+        form.innerHTML = `
+        <p>
+            <label>Title</label>
+            <input type="text" id="title">
+        </p>
+        <section>
+            <p>
+                <button type="button" class="submit">Submit</button>
+            </p>
+            <p>
+                <button type="button" class="cancel">cancel</button>
+            </p>
+        </section>
+        `
+        projectSection.insertBefore(form,selectedProject)
+
+        const projectList = Storage.getProjectList()
+        const selectedProjectTitle = document.querySelector('.project.selected .project-title').textContent
+        const project = projectList.find(project => project.title == selectedProjectTitle)
+
+        const formTitle = document.querySelector('.nav form #title')
+        formTitle.value = project.title
+
+    }
+
     static removeAddProjectButton() {
         document.querySelector('.nav .add-project-button').style.display = 'none';
     }
@@ -216,4 +245,10 @@ export default class UI {
         selectedProject.appendChild(popup)
 
     }
+
+    static removeProjectPopup() {
+        document.querySelector('.popup').remove()
+    }
+
+
 }
