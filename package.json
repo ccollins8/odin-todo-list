@@ -14,5 +14,8 @@
     "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4"
   },
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "date-fns": "^3.4.0"
+  }
 }

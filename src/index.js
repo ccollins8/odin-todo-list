@@ -1,4 +1,5 @@
 import './style.css';
+import { addDays, format, startOfDay } from "date-fns";
 import Task from './task';
 import Project from './project'
 import UI from './UI';
@@ -209,10 +210,26 @@ const nav = document.querySelector('main .nav');
 
 
 nav.addEventListener('click', (e) => {
+
+    if (e.target.matches('.all-tasks-button')) {
+        UI.renderAllTasks()
+        UI.deselectAll()
+        UI.removeTaskButton()
+        
+    }
+
+    if (e.target.matches('.today-tasks-button')) {
+        console.log('today')
+    }
+
+    if (e.target.matches('.upcoming-tasks-button')) {
+        console.log('upcoming')
+    }
     
     if (e.target.classList.contains('add-project-button')) {
         UI.displayProjectForm();
         UI.removeAddProjectButton();
+        
     }
 
     const title = document.querySelector('.nav #title')
@@ -267,6 +284,8 @@ nav.addEventListener('click', (e) => {
         UI.displayEditProjectForm()
         UI.removeProjectPopup()
     }
+
+
 
 
         

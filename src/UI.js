@@ -1,4 +1,5 @@
 import Storage from './storage'
+import { format } from "date-fns";
 
 export default class UI {
 
@@ -49,6 +50,28 @@ export default class UI {
             const tasksNode = document.querySelector('.list .tasks')
             tasksNode.appendChild(UI.addTask(task))
         })
+    }
+
+    static renderAllTasks() {
+        // for each all projects and then for each tasks for each project
+        UI.tasksNode.innerHTML = ''
+
+        const projectList = Storage.getProjectList()
+
+        projectList.forEach(project => {
+            project.tasks.forEach(task => {
+                const tasksNode = document.querySelector('.list .tasks')
+                tasksNode.appendChild(UI.addTask(task))
+            })
+        })
+    }
+
+    static renderTodayTasks() {
+        // for each all projects and then for each all tasks filtering for date
+    }
+
+    static renderUpcomingTasks() {
+        // for each all projects and then for each task filter by date
     }
 
     static render() {
@@ -107,7 +130,7 @@ export default class UI {
         </p>
         <p>
             <label>Date</label>
-            <input type="text" id="date">
+            <input type="date" id="date">
         </p>
         <section>
             <p>
@@ -248,6 +271,13 @@ export default class UI {
 
     static removeProjectPopup() {
         document.querySelector('.popup').remove()
+    }
+
+    static deselectAll() {
+        const nav = document.querySelector('.nav')
+        const descendants = nav.querySelectorAll('*')
+
+        descendants.forEach(element => element.classList.remove('selected'))
     }
 
 
