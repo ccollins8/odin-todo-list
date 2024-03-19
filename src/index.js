@@ -266,6 +266,9 @@ nav.addEventListener('click', (e) => {
         // console.log(Storage.getProjectList().find(project => project.title == title))
 
         UI.renderTasks()
+        if (document.querySelector('.list .add-task-button').style.display == 'none') {
+            UI.addTaskButton()
+        }
 
       }
     
