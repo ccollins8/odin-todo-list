@@ -137,16 +137,23 @@ nav.addEventListener('click', (e) => {
     if (e.target.matches('.all-tasks-button')) {
         UI.renderAllTasks()
         UI.deselectAll()
+        e.target.classList.add('selected')
         UI.removeTaskButton()
         
     }
 
     if (e.target.matches('.today-tasks-button')) {
         UI.renderTodayTasks()
+        UI.deselectAll()
+        e.target.classList.add('selected')
+        UI.removeTaskButton()
     }
 
     if (e.target.matches('.upcoming-tasks-button')) {
         UI.renderUpcomingTasks()
+        UI.deselectAll()
+        e.target.classList.add('selected')
+        UI.removeTaskButton()
     }
     
     if (e.target.classList.contains('add-project-button')) {
@@ -180,7 +187,7 @@ nav.addEventListener('click', (e) => {
         const clickedProject = e.target.closest('.project');
         
         // remove "selected from last project
-        document.querySelectorAll('.project').forEach(project => project.classList.remove('selected'))
+        UI.deselectAll()
         clickedProject.classList.add('selected');
         
         // const title = e.target.closest('.project').firstElementChild.nextElementSibling.textContent;
