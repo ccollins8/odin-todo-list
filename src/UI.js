@@ -1,5 +1,5 @@
 import Storage from './storage'
-import { format } from "date-fns";
+import {differenceInDays, format, isToday, parse } from "date-fns";
 
 export default class UI {
 
@@ -68,10 +68,41 @@ export default class UI {
 
     static renderTodayTasks() {
         // for each all projects and then for each all tasks filtering for date
+        UI.tasksNode.innerHTML = ''
+
+        const projectList = Storage.getProjectList()
+
+        projectList.forEach(project => {
+            project.tasks.forEach(task => {
+                const formatedDateStr = task.dueDate.replace(/-/g,'/')
+                const date = new Date(formatedDateStr)
+                if (isToday(date)) {
+                    this.tasksNode.appendChild(UI.addTask(task))
+                }
+            })
+        })
     }
 
     static renderUpcomingTasks() {
         // for each all projects and then for each task filter by date
+        UI.tasksNode.innerHTML = ''
+
+        const projectList = Storage.getProjectList()
+
+        projectList.forEach(project => {
+            project.tasks.forEach(task => {
+                const formatedDateStr = task.dueDate.replace(/-/g, '/')
+                const date = new Date(formatedDateStr)
+
+                const diffInDays = differenceInDays(date, new Date())
+
+                if (diffInDays <= 7 && diffInDays >= 0) {
+                    this.tasksNode.appendChild(UI.addTask(task))
+                }
+
+
+            })
+        })
     }
 
     static render() {

@@ -5,88 +5,11 @@ import Project from './project'
 import UI from './UI';
 import Storage from './storage';
 import loadPage from './iniitial-page-load';
+import {parse} from 'date-fns'
 
 loadPage();
 
 const addTask = document.querySelector('.list button')
-
-// Create task on click of button
-
-// addTask.addEventListener('click', () => {
-
-//     UI.displayTaskForm()
-//     UI.removeTaskButton();
-    
-//     const form = document.querySelector('.list form')
-//     const title = document.querySelector('.list #title')
-//     const description = document.querySelector('.list #description')
-//     const priority = document.querySelector('.list #priority')
-//     const date = document.querySelector('.list #date')
-
-//     form.addEventListener('submit', (e) => {
-//         e.preventDefault();
-//         // Create Object
-//         const task = new Task(title.value, description.value, priority.value, date.value)
-//         // Store object in localStorage
-//         Storage.addTaskToStorage(task)
-//         // clear form
-//         UI.clearTaskForm();
-//         // render tasks in Storage
-//         UI.renderTasks();
-//         UI.addTaskButton();
-//     })
-
-//     const formCancelBtn = document.querySelector('.list form .cancel')
-
-//     formCancelBtn.addEventListener('click', () => {
-//         UI.clearTaskForm();
-//         UI.renderTasks();
-//         UI.addTaskButton();
-//     })
-    
-    
-
-// })
-
-// click on tasks and edit/delete it
-
-// const tasks = document.querySelectorAll('.list .task-title')
-// tasks.forEach((task) => {
-//     task.addEventListener('click', () => {
-        
-//         // get key
-//         const key = task.textContent
-//         UI.displayEditTaskForm(localStorage.getItem(key));
-//         UI.removeTaskButton();
-
-
-//         const form = document.querySelector('.list form')
-//         const title = document.querySelector('.list #title')
-//         const description = document.querySelector('.list #description')
-//         const priority = document.querySelector('.list #priority')
-//         const date = document.querySelector('.list #date')
-        
-//         form.addEventListener('submit', (e) => {
-//             e.preventDefault();
-            
-//             const task = new Task(title.value, description.value, priority.value, date.value)
-//             Storage.addTaskToStorage(task)
-//             UI.clearTaskForm();
-//             UI.renderTasks();
-//             UI.addTaskButton();
-//         })
-
-//         const formCancelBtn = document.querySelector('.list form .cancel')
-
-//         formCancelBtn.addEventListener('click', () => {
-//             UI.clearTaskForm();
-//             UI.renderTasks();
-//             UI.addTaskButton();
-//         })
-
-
-//     })
-// })
 
 const list = document.querySelector('.list');
 const tasks = document.querySelector('.tasks')
@@ -219,11 +142,11 @@ nav.addEventListener('click', (e) => {
     }
 
     if (e.target.matches('.today-tasks-button')) {
-        console.log('today')
+        UI.renderTodayTasks()
     }
 
     if (e.target.matches('.upcoming-tasks-button')) {
-        console.log('upcoming')
+        UI.renderUpcomingTasks()
     }
     
     if (e.target.classList.contains('add-project-button')) {
@@ -269,7 +192,6 @@ nav.addEventListener('click', (e) => {
         if (document.querySelector('.list .add-task-button').style.display == 'none') {
             UI.addTaskButton()
         }
-
       }
     
     if (e.target.classList.contains('vert')) {
