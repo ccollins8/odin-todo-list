@@ -15,9 +15,15 @@
   margin: 0;
 }
 
+html {
+    /* footer support */
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     padding: 0;
-    margin: 0;
+    margin-bottom: 40px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: var(--emerald1);
     color: var(--emerald6)
@@ -46,6 +52,8 @@ header {
 
 main {
     display: flex;
+    /* footer support */
+    min-height: 88vh;
 }
 
 /* MAIN NAV SECTION */
