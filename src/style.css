@@ -31,6 +31,7 @@ body {
 
 button,
 input {
+  background-color: none;
   display:block;
   border: none;
   color: inherit;
@@ -65,10 +66,12 @@ main .nav {
 
 main .nav .home button {
     padding: 1rem;
+    text-align: left;
     height: 3rem;
     width: 15rem;
     border-radius: 10px;
     margin-bottom: 0.2rem;
+    background-color: var(--emerald2);
 }
 main .nav h3 {
     margin: 1rem 0;
@@ -85,8 +88,12 @@ main .nav .projects {
     gap: 0.25rem;
 }
 
-main .nav .selected {
-    background-color: lightblue;
+main .nav button.selected, main .nav .projects .project.selected {
+    background-color: var(--emerald1);
+}
+
+main .nav .home button:hover, main .nav .projects .project:hover, .nav .add-project-button:hover {
+    background-color: var(--emerald1);
 }
 
 main .nav .projects .project {
@@ -96,6 +103,7 @@ main .nav .projects .project {
     align-items: center;
     gap: 1rem;
     position: relative;
+    background-color: var(--emerald2);
 }
 
 main .nav .project .vert  {
@@ -107,6 +115,25 @@ main .nav .project .vert  {
 main .nav form section {
     display: flex;
     gap: 1rem;
+}
+
+.nav .add-project-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: var(--emerald2);
+    cursor: pointer;
+}
+
+.nav form {
+    margin-top: 0.5rem;
+}
+
+.nav form button {
+    padding: 1rem;
+    margin-top: 0.5rem;
 }
 
 .project .popup {

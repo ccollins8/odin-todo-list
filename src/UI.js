@@ -284,7 +284,7 @@ export default class UI {
     }
 
     static addProjectBtn() {
-        document.querySelector('.nav .add-project-button').style.display = "block";
+        document.querySelector('.nav .add-project-button').style.display = "flex";
     }
 
     static displayProjectPopup() {

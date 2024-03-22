@@ -156,7 +156,7 @@ nav.addEventListener('click', (e) => {
         UI.removeTaskButton()
     }
     
-    if (e.target.classList.contains('add-project-button')) {
+    if (e.target.closest('.add-project-button')) {
         UI.displayProjectForm();
         UI.removeAddProjectButton();
         
