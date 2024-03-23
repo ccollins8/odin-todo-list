@@ -77,8 +77,15 @@ main .nav h3 {
     margin: 1rem 0;
 }
 
+.home > * {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+}
+
 main .nav .home button {
-    padding: 1rem;
+    padding: 0.5rem;
     margin: 1rem 0;
 }
 
